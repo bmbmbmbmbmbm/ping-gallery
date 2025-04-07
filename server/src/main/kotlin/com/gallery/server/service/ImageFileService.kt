@@ -35,8 +35,9 @@ public class ImageFileService {
     public fun saveImage(file: MultipartFile): UUID {
         return try {
             val originalFilename = file.originalFilename ?: ""
-            if (file.isEmpty || originalFilename.isBlank())
+            if (file.isEmpty || originalFilename.isBlank()) {
                 throw StorageException("Failed to store empty file.")
+            }
 
             val extension = FileUtils.getExtension(originalFilename)
             val identfier = UUID.randomUUID()
@@ -76,14 +77,6 @@ public class ImageFileService {
         }
     } catch (e: MalformedURLException) {
         throw StorageFileNotFoundException("Could not read file: $fileName", e)
-    }
-
-    public fun delete(fileName: String) {
-        val destinationFile = getRootLocation().resolve(
-            Paths.get(fileName)
-        ).normalize().toAbsolutePath()
-        
-        FileSystemUtils.deleteRecursively(destinationFile.toFile());
     }
 
     private fun getRootLocation(): Path {

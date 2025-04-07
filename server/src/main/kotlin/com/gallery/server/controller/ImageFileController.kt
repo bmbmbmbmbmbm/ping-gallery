@@ -13,8 +13,10 @@ import com.gallery.server.model.ImageMeta
 import com.gallery.server.service.ImageFileService
 import com.gallery.server.service.ImageMetaService
 import com.gallery.server.exception.StorageFileNotFoundException
+import com.gallery.server.exception.StorageException
 
 import io.github.oshai.kotlinlogging.KotlinLogging
+import java.net.URI
 
 private val logger = KotlinLogging.logger {} 
 /***
@@ -39,13 +41,12 @@ public class ImageFileController(private val imageFileService: ImageFileService,
     public fun postImage(@RequestParam("file") file: MultipartFile, @RequestParam("name") name: String): ResponseEntity<ImageMeta?> {
         try {
             val id = imageFileService.saveImage(file)
-            val imageMeta = imageMetaService.
+            val imageMeta = imageMetaService.createMeta(id, name, file)
+            val uri: URI = URI.create(imageMeta.uri)
+            return ResponseEntity.created(uri).body(imageMeta)
+        } catch (exception: StorageException) {
+            logger.error { exception }
+            return ResponseEntity.badRequest().build()
         }
-        return ResponseEntity.badRequest().build()
-    }
-
-    @DeleteMapping("/image-file/{id}")
-    public fun postImage(@PathVariable("id") id: String): ResponseEntity<ImageMeta?> {
-        return ResponseEntity.badRequest().build()
     }
 }
