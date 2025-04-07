@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "gallery.server.image.store",
+  "type": "java.lang.String",
+  "description": "A description for 'gallery.server.image.store'"
+}]}
