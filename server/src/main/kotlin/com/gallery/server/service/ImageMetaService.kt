@@ -15,8 +15,6 @@ private val logger = KotlinLogging.logger {}
 @Service
 public class ImageMetaService(private val imageMetaRepository: ImageMetaRepository) {
 
-    private final val logstr: String = "ImageMetaService"
-
     public fun getAll(): List<ImageMeta> {
         return imageMetaRepository.findAll()
     }
@@ -32,4 +30,7 @@ public class ImageMetaService(private val imageMetaRepository: ImageMetaReposito
         }
     }
 
+    public fun createMeta(id: UUID, name: String): ImageMeta {
+
+    }
 }
