@@ -3,4 +3,4 @@
 pnpm i
 pnpm run build
 
-docker build .
+docker build -t client .
