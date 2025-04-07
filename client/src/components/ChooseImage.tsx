@@ -9,7 +9,10 @@ interface ChooseImageProps {
     touched: FormikTouched<ImageUpload>
     setFieldValue: (field: string, value: any, shouldValidate?: boolean) => Promise<void> | Promise<FormikErrors<ImageUpload>>
 }
-
+/**
+ * Used to upload image files into a Formik form. Modified a file upload component from below.
+ * Sourced from https://uploadcare.com/blog/how-to-upload-file-in-react/
+ */
 function ChooseImage({ data, errors, touched, setFieldValue }: ChooseImageProps) {
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
