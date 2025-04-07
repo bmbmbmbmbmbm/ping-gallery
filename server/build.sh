@@ -1,3 +1,3 @@
 #!/bin/sh
 
-mvn compile jib:dockerBuild
+./mvnw compile jib:dockerBuild
