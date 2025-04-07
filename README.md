@@ -2,14 +2,14 @@
 
 Tech assessment for Ping Identity.
 
-## Requirements
+## Building/Running the Software
+
+### Requirements
 
 - docker
 - docker-compose
 - docker-buildx
 - pnpm
-
-## Building/Running the Software
 
 ### Linux/Unix Systems
 
@@ -56,7 +56,7 @@ docker compose up
 
 Frontend: React TS, Material UI
 
-I am very familiar with React and figured it would be the best choice to work with given the time constraint. I am also very familiar with MUI and chose to use it to avoid having set up a style sheet and reduce the amount of components needing to be made e.g., the gallery component is just a wrapper for an image list from MUI.
+I am very familiar with React and figured it would be the best choice to work with given the time constraint. I am also very familiar with MUI and chose to use it to avoid having to set up a style sheet and reduce the amount of components needing to be made e.g., the gallery component is just a wrapper for an image list from MUI rather than being directly made of HTML elements.
 
 Backend: Spring Boot Kotlin
 
@@ -74,7 +74,7 @@ For quickly throwing together a deployment that requires minimal user installati
 
 Most of the challenges surrounding this were to do with my development environment. I tried using Kotlin in VSCode and found the extensions can give false positives/negatives quite frequently. I did try installing Intellij but ran into trouble locating a project SDK as I used WSL. I did return to using VSCode but I imagine the process would have been faster with an IDE instead of a generic editor. 
 
-Additionally, setting up Docker to work with WSL was curious because the errors seemed typical to Linux, so diagnosing that Docker Desktop needed to be installed was slightly jarring. Additionally, I made an error setting up the mongodb image as the user credentials were stored in a DB different to admin. Instead of fixing that I did just set the auth db to gallery-database. 
+Additionally, setting up Docker to work with WSL was curious because the errors surrounding it seemed typical to Linux, so diagnosing that Docker Desktop needed to be installed was slightly jarring. Additionally, I made an error setting up the mongodb image as the user credentials were stored in a DB different to admin. Instead of fixing that I did just set the auth db to gallery-database. 
 
 ## Potential Features
 
@@ -86,7 +86,7 @@ I am not particularly imaginative but here are some thoughts.
 
 ## Codebase Improvements
 
-For consideration, I aimed to get a working solution done as soon as possible, which meant I forgoed adding tests and comments to save time. The comments I had left were to credit where I pulled solutions from. The solutions I had taken I tried to modify for the purposes of this application, and improve code quality.
+For consideration, I aimed to get a working solution done as soon as possible, which meant I forgoed adding tests and comments to save time. The comments I had left were to credit where I pulled solutions from. The solutions used were modified for the purposes of this application.
 
 The main issues with the application are as follows.
 - No attempt to hide secrets were made, so secrets are stored in git. Adding a set of secrets files for the server and deploy would reduce risk of exposure.
@@ -99,6 +99,6 @@ The main issues with the application are as follows.
 - Adapt codebase to work with a deployment platform e.g., AWS, Azure, etc.
 - Increase the amount of logs to help debugging.
 - Adding frontend error handling would be useful e.g., an errors page, not found page, etc.
-- API documentation e.g, JavaDoc.
+- API documentation that integrates with an IDE would be helpful.
 - Comments explaining thought processes for implementation would be helpful.
 - Improve frontend styling.
