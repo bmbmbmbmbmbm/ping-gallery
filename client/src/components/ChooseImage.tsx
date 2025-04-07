@@ -1,4 +1,4 @@
-import { Box } from "@mui/material"
+import { Box, Stack } from "@mui/material"
 import { FormikErrors, FormikTouched } from "formik"
 import React from "react"
 import { sizeFormat } from "../utils/file"
@@ -8,12 +8,16 @@ interface ChooseImageProps {
     errors: FormikErrors<ImageUpload>
     touched: FormikTouched<ImageUpload>
     setFieldValue: (field: string, value: any, shouldValidate?: boolean) => Promise<void> | Promise<FormikErrors<ImageUpload>>
+    onBlur: {
+        (e: React.FocusEvent<any, Element>): void;
+        <T = any>(fieldOrEvent: T): T extends string ? (e: any) => void : void;
+    }
 }
 /**
  * Used to upload image files into a Formik form. Modified a file upload component from below.
  * Sourced from https://uploadcare.com/blog/how-to-upload-file-in-react/
  */
-function ChooseImage({ data, errors, touched, setFieldValue }: ChooseImageProps) {
+function ChooseImage({ data, errors, touched, setFieldValue, onBlur }: ChooseImageProps) {
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
@@ -23,12 +27,12 @@ function ChooseImage({ data, errors, touched, setFieldValue }: ChooseImageProps)
 
     return (
         <Box id="choose-image">
-            <div>
-                <input id="file" type="file" accept=".png,.jpg,.jpeg" onChange={handleFileChange} required />
+            <Stack>
+                <input id="file" type="file" accept=".png,.jpg,.jpeg" onChange={handleFileChange} onBlur={onBlur} required />
                 {touched.file && Boolean(errors.file) &&
                     <label>{errors.file}</label>
                 }
-            </div>
+            </Stack>
             {data.file && (
                 <Box component="section">
                     File details:
