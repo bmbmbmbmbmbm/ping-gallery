@@ -1,16 +1,17 @@
 package com.gallery.server.controller
 
-import com.gallery.server.repository.ImageMetaRepository
 import com.gallery.server.model.ImageMeta
 import com.gallery.server.service.ImageMetaService
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.RestController
 
+@CrossOrigin
 @RestController
 public class ImageMetaController(private val imageMetaService: ImageMetaService) {
-    
+
     @GetMapping("/image-meta")
     public fun getImageMeta(): List<ImageMeta> {
         return imageMetaService.getAll()
