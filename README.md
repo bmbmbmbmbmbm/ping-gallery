@@ -1,6 +1,6 @@
 # ping-gallery
 
-Tech assessment for Ping Identity.
+Tech assessment for Ping Identity. Made within the span of 4 hours. Simple image server with gui.
 
 ## Building/Running the Software
 
